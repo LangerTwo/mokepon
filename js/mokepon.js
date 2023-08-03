@@ -34,6 +34,8 @@ let botonTierra
 let botones = []
 let indexAtaqueJugador
 let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
 
@@ -216,28 +218,28 @@ function combate() {
         if(atakJugador[i] === ataqueEnemigo[i]) {
             indexAmbosOponentes(i, i)
             crearMensaje("EMPATE")
-            vidasEnemigo--
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            victoriasJugador++
+            spanVidasJugador.innerHTML = vidasJugador
         } else if(atakJugador[i] === 'Fuego'&& ataqueEnemigo[i] === 'Tierra') {
             indexAmbosOponentes(i, i)
             crearMensaje("GANASTE")
-            vidasEnemigo--
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            victoriasJugador++
+            spanVidasJugador.innerHTML = vidasJugador
         } else if (atakJugador[i] === 'Agua' && ataqueEnemigo[i] === 'Fuego') {
             indexAmbosOponentes(i, i)
             crearMensaje("GANASTE")
-            vidasEnemigo--
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            victoriasJugador++
+            spanVidasJugador.innerHTML = vidasJugador
         } else if (atakJugador[i] === 'Tierra' && ataqueEnemigo === 'Agua'){
             indexAmbosOponentes(i, i)
             crearMensaje("GANASTE")
-            vidasEnemigo--
-            spanVidasEnemigo.innerHTML = vidasEnemigo
+            victoriasJugador++
+            spanVidasJugador.innerHTML = vidasJugador
         } else {
             indexAmbosOponentes(i, i)
             crearMensaje("PERDISTE")
-            vidasJugador--
-            spanVidasJugador.innerHTML = vidasJugador
+            victoriasEnemigo++
+            spanVidasEnemigo.innerHTML = victoriasEnemigo
         }
         
     }
@@ -246,9 +248,11 @@ function combate() {
 }
 
 function revisarVidas(){
-    if(vidasEnemigo == 0){
+    if(victoriasJugador === victoriasEnemigo){
+        crearMensajeFinal("Esto fue un empate!!!")
+    }else if(victoriasJugador > victoriasEnemigo){
         crearMensajeFinal("Felicitaciones! Ganaste :)")
-    }else if(vidasJugador == 0){
+    } else {        
         crearMensajeFinal("Lo siento, Perdiste :(")
     }
 }
