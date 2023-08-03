@@ -163,14 +163,17 @@ function secuenciaAtaque(){
                 atakJugador.push('Fuego')
                 console.log(atakJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true
             } else if (e.target.textContent === '💧') {
                 atakJugador.push('Agua')
                 console.log(atakJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true
             } else {
                 atakJugador.push('Tierra')
                 console.log(atakJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true
             }
             ataqueAleatorioEnemigo()
         })
@@ -208,7 +211,7 @@ function iniciarPelea() {
 }
 
 function indexAmbosOponentes(jugador, enemigo) {
-    indexAtaqueJugador = ataqueEnemigo[jugador]
+    indexAtaqueJugador = atakJugador[jugador]
     indexAtaqueEnemigo = ataqueEnemigo[enemigo]
 }
 
@@ -218,23 +221,21 @@ function combate() {
         if(atakJugador[i] === ataqueEnemigo[i]) {
             indexAmbosOponentes(i, i)
             crearMensaje("EMPATE")
-            victoriasJugador++
-            spanVidasJugador.innerHTML = vidasJugador
         } else if(atakJugador[i] === 'Fuego'&& ataqueEnemigo[i] === 'Tierra') {
             indexAmbosOponentes(i, i)
             crearMensaje("GANASTE")
             victoriasJugador++
-            spanVidasJugador.innerHTML = vidasJugador
+            spanVidasJugador.innerHTML = victoriasJugador
         } else if (atakJugador[i] === 'Agua' && ataqueEnemigo[i] === 'Fuego') {
             indexAmbosOponentes(i, i)
             crearMensaje("GANASTE")
             victoriasJugador++
-            spanVidasJugador.innerHTML = vidasJugador
+            spanVidasJugador.innerHTML = victoriasJugador
         } else if (atakJugador[i] === 'Tierra' && ataqueEnemigo === 'Agua'){
             indexAmbosOponentes(i, i)
             crearMensaje("GANASTE")
             victoriasJugador++
-            spanVidasJugador.innerHTML = vidasJugador
+            spanVidasJugador.innerHTML = victoriasJugador
         } else {
             indexAmbosOponentes(i, i)
             crearMensaje("PERDISTE")
@@ -273,10 +274,6 @@ function crearMensaje(resultado){
 function crearMensajeFinal(resultadoFinal){
     
     sectionMensajes.innerHTML = resultadoFinal
-
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonTierra.disabled = true
 
     sectionReiniciar.style.display = 'block'
 }
