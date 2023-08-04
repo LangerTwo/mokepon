@@ -397,10 +397,29 @@ function obtenerObjetomascota() {
      }
 }
 
-function revisarCol() {
-//    if(){
-//      abajoMascota < arribaEnemigo 
-//    } 
-}
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y
+    const abajoEnemigo = enemigo.y + enemigo.alto
+    const derechaEnemigo = enemigo.x + enemigo.ancho
+    const izquierdaEnemigo = enemigo.x
 
+    const arribaMascota = 
+       mascotaJugadorObjeto.y
+    const abajoMascota = 
+       mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto
+    const derechaMascota = 
+       mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho
+    const izquierdaMascota = 
+       mascotaJugadorObjeto.x
+
+   if(
+     abajoMascota < arribaEnemigo ||
+     arribaMascota > abajoEnemigo ||
+     derechaMascota < izquierdaEnemigo ||
+     izquierdaMascota > derechaEnemigo
+    ) { 
+        return
+    }
+    alert("Hay Colision")
+}
 window.addEventListener('load', iniciarJuego)
